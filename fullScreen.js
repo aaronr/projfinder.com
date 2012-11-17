@@ -44,7 +44,7 @@ function init(){
 					     new OpenLayers.Projection("EPSG:4326")).lon;
         var lat = this.getCenter().transform(map.getProjectionObject(),
 					     new OpenLayers.Projection("EPSG:4326")).lat;
-        var url = "/pmp?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
+        var url = "http://pullmyproj.cugos.org/pmp?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
         $.get(url, function(data) {
             $('#xycoord').html(data);
         });
@@ -61,7 +61,7 @@ function init(){
 
     // Hook up to the button to query
     $("#myButton").click(function(){
-        var url = "pullmyproj.cugos.org/pmp?x="+$("#xcoord").html()+"&y="+$("#ycoord").html()+"&xx="+$("#xtxt").val()+"&yy="+$("#ytxt").val();
+        var url = "http://pullmyproj.cugos.org/pmp?x="+$("#xcoord").html()+"&y="+$("#ycoord").html()+"&xx="+$("#xtxt").val()+"&yy="+$("#ytxt").val();
         $.get(url, function(data) {
             $('#results').html(data);
         });

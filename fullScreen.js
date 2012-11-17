@@ -61,7 +61,7 @@ function init(){
 
     // Hook up to the button to query
     $("#myButton").click(function(){
-        var url = "/pmp?x="+$("#xcoord").html()+"&y="+$("#ycoord").html()+"&xx="+$("#xtxt").val()+"&yy="+$("#ytxt").val();
+        var url = "pullmyproj.cugos.org/pmp?x="+$("#xcoord").html()+"&y="+$("#ycoord").html()+"&xx="+$("#xtxt").val()+"&yy="+$("#ytxt").val();
         $.get(url, function(data) {
             $('#results').html(data);
         });

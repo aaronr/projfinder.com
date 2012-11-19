@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/tilecache/!svn/ver/405/trunk/tilecache/tests
+END
+HACKING.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/tilecache/!svn/ver/263/trunk/tilecache/tests/HACKING.txt
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/tilecache/!svn/ver/403/trunk/tilecache/tests/__init__.py
+END
+tests.py
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/tilecache/!svn/ver/174/trunk/tilecache/tests/tests.py
+END
+HACKING.swarm.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/tilecache/!svn/ver/405/trunk/tilecache/tests/HACKING.swarm.txt
+END
+Service.txt
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/tilecache/!svn/ver/405/trunk/tilecache/tests/Service.txt
+END

@@ -1,0 +1,14 @@
+#!/bin/sh
+
+TARGET=$0
+
+MAPSERVER_HOME=/usr/lib/cgi-bin
+export GDAL_DISABLE_READDIR_ON_OPEN=YES
+MAPFILE="/mnt/data/projects/pullmyproj/server/mapfiles/pmp.map"
+if [ -z "${QUERY_STRING}" ]; then
+  QUERY_STRING="map=${MAPFILE}"
+else
+  QUERY_STRING="map=${MAPFILE}&${QUERY_STRING}"
+fi
+
+$MAPSERVER_HOME/mapserv "$@"

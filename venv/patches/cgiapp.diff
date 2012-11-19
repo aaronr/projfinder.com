@@ -1,0 +1,22 @@
+--- erma/lib/python2.6/site-packages/paste/cgiapp.py    2012-08-13 12:16:23.000000000 -0400
++++ /tmp/cgiapp.py      2012-08-13 12:15:30.000000000 -0400
+@@ -66,7 +66,8 @@
+         self.include_os_environ = include_os_environ
+         self.query_string = query_string
+
+-    def __call__(self, environ, start_response):
++    def __call__(self, environ, start_response, procname=None):
++        procname=procname or self.script
+         if 'REQUEST_URI' not in environ:
+             environ['REQUEST_URI'] = (
+                 urllib.quote(environ.get('SCRIPT_NAME', ''))
+@@ -87,7 +88,8 @@
+             cgi_environ['QUERY_STRING'] = old + self.query_string
+         cgi_environ['SCRIPT_FILENAME'] = self.script
+         proc = subprocess.Popen(
+-            [self.script],
++            [procname],
++            executable=self.script,
+             stdin=subprocess.PIPE,
+             stdout=subprocess.PIPE,
+             stderr=subprocess.PIPE,

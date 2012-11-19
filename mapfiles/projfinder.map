@@ -1,0 +1,109 @@
+# -*- shell-script -*- Tell emacs to pretend that this is shell-script
+MAP
+  NAME PROJFINDER
+  UNITS METERS
+  EXTENT -8200000 4990000 -7800000 6050000
+  STATUS ON
+  SIZE 512 512
+  IMAGECOLOR 255 255 255
+  IMAGETYPE PNG
+
+  # This is for the WMS requests
+  #OUTPUTFORMAT
+  #  NAME PNG
+  #  DRIVER 'GD/PNG'
+  #  MIMETYPE 'image/png'
+  #  IMAGEMODE RGBA
+  #  EXTENSION "png"
+  #  TRANSPARENT ON
+  #END
+
+  PROJECTION
+   "init=epsg:900913"
+  END
+
+  WEB
+    IMAGEPATH "../ms_tmp/"
+    IMAGEURL "/ms_tmp/"
+    LOG "../logs/mapserver.log"
+    METADATA
+      ows_enable_request "*"
+      WMS_FEATURE_INFO_MIME_TYPE "text/html"
+      OWS_FEATURE_INFO_MIME_TYPE "text/html"
+      WMS_INCLUDE_ITEMS "text/html"
+      WMS_TITLE "ProjFinder"
+      WMS_ABSTRACT "ProjFinder map web services"
+      WMS_ACCESSCONSTRAINTS "none"
+      WMS_ONLINERESOURCE "http://api.projfinder.com/wms/projfinder?"
+      WMS_SRS "EPSG:900913 EPSG:4326"
+    END
+  END
+
+  FONTSET "../fonts/fontset.txt"
+
+  LEGEND
+    STATUS ON
+    IMAGECOLOR 229 227 223
+    KEYSIZE 20 12
+    LABEL
+      FONT "LucidaSansRegular"
+      TYPE truetype
+      PARTIALS false
+      BUFFER 1
+      COLOR 0 0 0
+      SIZE 9
+      OFFSET 1 -2
+      ANTIALIAS true
+      WRAP '|'
+    END
+  END
+
+  SYMBOL
+    NAME 'circle'
+    TYPE ellipse
+    FILLED true
+    POINTS
+      1 1
+    END
+  END
+
+  #
+  # BEGIN LAYER DESCRIPTIONS
+  #
+  LAYER
+    NAME "PROJ_BBOX"
+    CONNECTIONTYPE POSTGIS
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CONNECTION "user=aaronr password='aaronr' dbname=projfinder host=localhost"
+    DATA "the_geom from xxx"
+    PROJECTION
+      "init=epsg:4326"
+    END
+  
+    TYPE POLYGON
+    STATUS ON
+    DUMP TRUE
+    HEADER "templates/projfinder_header.html"
+    FOOTER "templates/projfinder_footer.html"
+    TEMPLATE "templates/projfinder.html"
+    TOLERANCE 15
+    OPACITY 40
+    CLASS
+      NAME "bbox"
+      STYLE
+        OUTLINECOLOR 255 255 255
+        COLOR 0 150 150
+        WIDTH 1
+      END
+    END
+    METADATA
+      WMS_TITLE "PROJ_BBOX"
+      WMS_ABSTRACT "Projection BBOX polys"
+      WMS_SRS "epsg:900913"
+      GML_INCLUDE_ITEMS "all"
+      GML_EXCLUDE_ITEMS "the_geom"
+    END
+  END
+
+END
+

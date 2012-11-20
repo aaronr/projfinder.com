@@ -17,9 +17,9 @@ def application(environ, start_response):
         try:
             conn=psycopg2.connect(connstring)
             cursor=conn.cursor()
-            output += 'Connection Success\n'
+            #output += 'Connection Success\n'
         except Exception, e:            
-            output = 'Connection Failed\n'
+            #output = 'Connection Failed\n'
             response_headers = [('Content-type', 'text/plain'),
                                 ('Content-Length', str(len(output)))]
             status = '500 Internal Server Error'
@@ -37,30 +37,40 @@ def application(environ, start_response):
 
             output += 'Query Success<br>'
 
-            response_headers = [('Content-type', 'text/plain'),
-                                ('Content-Length', str(len(output)))]
+            if params.has_key('callback'):
+                output = params['callback'] + '({"output": "' + output + '"})'
+                response_headers = [('Content-type', 'application/x-javascript; charset=utf-8'),
+                                    ('Content-Length', str(len(output)))]
+            else:
+                response_headers = [('Content-type', 'text/plain; charset=UTF-8'),
+                                    ('Content-Length', str(len(output)))]
             status = '200 OK'
             start_response(status, response_headers)
         elif params.has_key('x') and params.has_key('y') and params.has_key('epsg'):
             # Need to reproject the coords
             selectStatement = "select st_x(st_transform(st_geometryfromtext('POINT(%s %s)',4326),%s)), st_y(st_transform(st_geometryfromtext('POINT(%s %s)',4326),%s));" % (params['x'],params['y'],params['epsg'],params['x'],params['y'],params['epsg'])
             cursor.execute(selectStatement)
-            results = cursor.fetchone()
+            results = cursor.fetchone()                
             output = "x=%f y=%f" % (results[0], results[1])
-            response_headers = [('Content-type', 'text/plain'),
-                                ('Content-Length', str(len(output)))]
+            if params.has_key('callback'):
+                output = params['callback'] + '({"output": "' + output + '"})'
+                response_headers = [('Content-type', 'application/x-javascript; charset=utf-8'),
+                                    ('Content-Length', str(len(output)))]
+            else:
+                response_headers = [('Content-type', 'text/plain; charset=UTF-8'),
+                                    ('Content-Length', str(len(output)))]
             status = '200 OK'
             start_response(status, response_headers)
         else:
-            output = 'No Params\n'
+            output = 'No Params'
             status = '500 Internal Server Error'
-            response_headers = [('Content-type', 'text/plain'),
+            response_headers = [('Content-type', 'text/plain; charset=UTF-8'),
                                 ('Content-Length', str(len(output)))]
             start_response(status, response_headers)
     else:
-        output = 'Needs to be GET\n'
+        output = 'Needs to be GET'
         status = '500 Internal Server Error'
-        response_headers = [('Content-type', 'text/plain'),
+        response_headers = [('Content-type', 'text/plain; charset=UTF-8'),
                             ('Content-Length', str(len(output)))]
         start_response(status, response_headers)
     return [output]

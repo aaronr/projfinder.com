@@ -61,9 +61,10 @@ function init(){
 
     // Hook up to the button to query
     $("#myButton").click(function(){
-        var url = "http://api.projfinder.com/finder?x="+$("#xcoord").html()+"&y="+$("#ycoord").html()+"&xx="+$("#xtxt").val()+"&yy="+$("#ytxt").val();
-        $.get(url, function(data) {
-            $('#results').html(data);
+	var url = "http://api.projfinder.com/finder?x="+$("#xcoord").html()+"&y="+$("#ycoord").html()+"&xx="+$("#xtxt").val()+"&yy="+$("#ytxt").val();
+	url = url + "&callback=?";
+        $.getJSON(url, function(data) {
+            $('#results').html(data.output);
         });
     })
 }

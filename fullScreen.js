@@ -44,9 +44,10 @@ function init(){
 					     new OpenLayers.Projection("EPSG:4326")).lon;
         var lat = this.getCenter().transform(map.getProjectionObject(),
 					     new OpenLayers.Projection("EPSG:4326")).lat;
-        var url = "http://pullmyproj.cugos.org/pmp?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
-        $.get(url, function(data) {
-            $('#xycoord').html(data);
+        var url = "http://api.projfinder.com/finder?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
+	url = url + "&callback=?";
+        $.getJSON(url, function(data) {
+            $('#xycoord').html(data.output);
         });
 
 

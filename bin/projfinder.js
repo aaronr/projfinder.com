@@ -8,7 +8,7 @@
 var app = require('express')();
 var express = require("express");
 var server = require('http').createServer(app);
-server.listen(3000);
+server.listen(9000);
 /*var io = require('socket.io').listen(server);*/
 var pg = require('pg');
 
@@ -18,12 +18,12 @@ var pg = require('pg');
 **  setup static and index
 **
 */
-app.get('/', function (req, res) {
-
-	res.sendfile(__dirname + '/index.html');
-
-});
-app.use("/static", express.static(__dirname + '/static'));
+//app.get('/', function (req, res) {
+//
+//	res.sendfile(__dirname + '/index.html');
+//
+//});
+//app.use("/static", express.static(__dirname + '/static'));
 /*app.use("/public", express.static(__dirname + '/public'));*/
 
 /*
@@ -68,7 +68,7 @@ app.get('/psql', function (req, res) {
 	    this.features = new Array();
 	}
 
-	var connString = 'postgres://gcorradini:gcorradini@localhost:5432/projfinder';
+	var connString = 'postgres://aaronr:aaronr@localhost:5432/projfinder';
 
 	pg.connect(connString, function(err, client) {
 	 

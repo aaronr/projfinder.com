@@ -33,7 +33,7 @@ app.get('/reproject', function (req, res) {
                 console.log(err);
             } else {
 		var sql = "select st_asgeojson(st_geometryfromtext('POINT(" + x + " " + y + ")',4326),15,4) as from, st_asgeojson(st_transform(st_geometryfromtext('POINT(" + x + " " + y + ")',4326)," + epsg + "),15,4) as to;"
-		console.log(sql);
+		//console.log(sql);
 		//var sql = "select alias_code from epsg_alias";
                 client.query(sql, function(err,result) {
                     if ( err ) {

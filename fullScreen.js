@@ -62,7 +62,8 @@ function init(){
 
     // Hook up to the button to query
     $("#myButton").click(function(){
-	var url = "http://api.projfinder.com/finder?x="+$("#xcoord").html()+"&y="+$("#ycoord").html()+"&xx="+$("#xtxt").val()+"&yy="+$("#ytxt").val();
+	var url = "http://api.projfinder.com/p/projfinder/?ref_lon="+$("#xcoord").html()+"&ref_lat="+$("#ycoord").html()+"&unknown_x="+$("#xtxt").html()+"&unknown_y="+$("#ytxt").html()+"&limit=5";
+	//var url = "http://api.projfinder.com/finder?x="+$("#xcoord").html()+"&y="+$("#ycoord").html()+"&xx="+$("#xtxt").val()+"&yy="+$("#ytxt").val();
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {
             $('#results').html(data.output);

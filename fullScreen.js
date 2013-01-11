@@ -47,7 +47,7 @@ function init(){
         var url = "http://api.projfinder.com/p/reproject?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {
-            $('#xycoord').html("x="+data.result[0].coordinates[0]+" y="+data.result[0].coordinates[1]));
+            $('#xycoord').html("x="+data.result[0].coordinates[0]+" y="+data.result[0].coordinates[1]);
         });
 
 

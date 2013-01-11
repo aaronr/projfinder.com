@@ -44,10 +44,10 @@ function init(){
 					     new OpenLayers.Projection("EPSG:4326")).lon;
         var lat = this.getCenter().transform(map.getProjectionObject(),
 					     new OpenLayers.Projection("EPSG:4326")).lat;
-        var url = "http://api.projfinder.com/finder?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
+        var url = "http://api.projfinder.com/p/reproject?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {
-            $('#xycoord').html(data.output);
+            $('#xycoord').html("x="+data.result[0].coordinates[0]+" y="+data.result[0].coordinates[1]));
         });
 
 

@@ -44,7 +44,7 @@ function init(){
 					     new OpenLayers.Projection("EPSG:4326")).lon;
         var lat = this.getCenter().transform(map.getProjectionObject(),
 					     new OpenLayers.Projection("EPSG:4326")).lat;
-        var url = "http://api.projfinder.com/p/reproject?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
+        var url = "http://api.projfinder.com/api/reproject?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {
             $('#xycoord').html("x="+data.result[0].coordinates[0]+" y="+data.result[0].coordinates[1]);
@@ -62,7 +62,7 @@ function init(){
 
     // Hook up to the button to query
     $("#myButton").click(function(){
-	var url = "http://api.projfinder.com/p/projfinder/?ref_lon="+$("#xcoord").html()+"&ref_lat="+$("#ycoord").html()+"&unknown_x="+$("#xtxt").val()+"&unknown_y="+$("#ytxt").val()+"&limit=5";
+	var url = "http://api.projfinder.com/api/projfinder/?ref_lon="+$("#xcoord").html()+"&ref_lat="+$("#ycoord").html()+"&unknown_x="+$("#xtxt").val()+"&unknown_y="+$("#ytxt").val()+"&limit=5";
 	//var url = "http://api.projfinder.com/finder?x="+$("#xcoord").html()+"&y="+$("#ycoord").html()+"&xx="+$("#xtxt").val()+"&yy="+$("#ytxt").val();
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {

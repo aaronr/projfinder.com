@@ -47,7 +47,7 @@ function init(){
         var url = "http://api.projfinder.com/api/reproject?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {
-            $('#xycoord').html("x="+data.result[0].coordinates[0]+" y="+data.result[0].coordinates[1]);
+            $('#xycoord').html("x="+data.response[0].coordinates[0]+" y="+data.response[0].coordinates[1]);
         });
 
 
@@ -67,8 +67,8 @@ function init(){
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {
 	    $('#results').html("");
-	    for (i = 0; i < data.result.length; i++) {
-		$('#results').append("Rank:"+data.result[i].rank+" SRID:"+data.result[i].srid+" Name:"+data.result[i].name+"<br><br>");
+	    for (i = 0; i < data.reponse.length; i++) {
+		$('#results').append("Rank:"+data.response[i].rank+" SRID:"+data.response[i].srid+" Name:"+data.response[i].name+"<br><br>");
 	    }
         });
     })

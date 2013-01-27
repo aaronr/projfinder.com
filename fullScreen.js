@@ -67,7 +67,7 @@ function init(){
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {
 	    $('#results').html("");
-	    for (i = 0; i < data.reponse.length; i++) {
+	    for (i = 0; i < data.response.length; i++) {
 		$('#results').append("Rank:"+data.response[i].rank+" SRID:"+data.response[i].srid+" Name:"+data.response[i].name+"<br><br>");
 	    }
         });

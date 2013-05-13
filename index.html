@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="OpenLayers-2.12/theme/default/style.css" type="text/css" />
-        <title>ProjFinder Yo Roger</title>        
+        <title>ProjFinder Yo</title>        
         <style type="text/css">
             html, body {
                 margin: 0;
@@ -18,25 +18,20 @@
         <script src="projFinder.js"></script>
     </head>
     <body onload="init()">
-        <div style="background-color:lightgray; width:40%; height:100%; float:left">
-          <center><h2>ProjFinder</h2></center>
-          <br><br>
-          <center>
-            X: <input type="text" id="xtxt" value="1354804"/><br>
-            Y: <input type="text" id="ytxt" value="366934"/><br>
-            <input id="myButton" type="button" value="test">
-            <br><br>
-            <div id="xcoord"></div><div id="ycoord"></div><br>
-            <div id="xycoord"></div><br>
-            Projection: <input type="text" id="xyproj" value="2285"/><br>
- 
-            <br><br>
-            <div id="results" style="background-color:white; width:90%; height:500px; float:center"></div>
-          </center>
-        </div>
-        
-        <div id="map" style="background-color:gray; width:60%; height:100%; float:right">
-        </div>
-
+      <div style="background-color:lightgray; width:40%; height:100%; float:left">
+        <center>
+          X: <input type="text" id="xtxt" value="1354804"/>
+          Y: <input type="text" id="ytxt" value="366934"/><br>
+          <input id="myButton" type="button" value="Find My Projection">
+          <br>
+          Map Center: <span id="xcoord"></span>&nbsp,&nbsp<span id="ycoord"></span>
+          <!--div id="xycoord"></div><br> -->
+          <!--Projection: <input type="text" id="xyproj" value="2285"/><br> -->
+          <br>
+          <div id="results" style="background-color:white; width:90%; height:500px; float:center"></div>
+        </center>
+      </div>
+      <div id="map" style="background-color:gray; width:60%; height:100%; float:right">
+      </div>
     </body>
 </html>

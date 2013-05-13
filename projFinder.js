@@ -22,7 +22,7 @@ function init(){
     map.addLayers( [ osm ] );
 
     // Coordinate display at bottom of map
-    map.addControl(new OpenLayers.Control.MousePosition());
+    //map.addControl(new OpenLayers.Control.MousePosition());
 
     map.events.register("moveend", map, function(e) {
         // Always display lat/lon

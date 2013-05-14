@@ -69,10 +69,10 @@ function init(){
 	var url = "http://api.projfinder.com/api/projfinder?ref_lon="+$("#xcoord").html()+"&ref_lat="+$("#ycoord").html()+"&unknown_x="+$("#xtxt").val()+"&unknown_y="+$("#ytxt").val()+"&limit=5";
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {
-	    $('#results').html("");
-	    for (i = 0; i < data.response.length; i++) {
-		$('#results').append("Rank:"+data.response[i].rank+" SRID:"+data.response[i].srid+" Name:"+data.response[i].name+"<br><br>");
-	    }
+            $("#response-table tbody").remove();
+            for (i = 0; i < data.response.length; i++) {
+                $("#response-table").append("<tr><td>"+data.response[i].rank+"</td><td>"+" EPSG:"+data.response[i].srid+" Name:"+data.response[i].name+"</td></tr>");
+            }
         });
     })
 }

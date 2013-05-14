@@ -60,7 +60,7 @@ function init(){
         $.getJSON(url, function(data) {
             $("#response-table tbody").remove();
             for (i = 0; i < data.response.length; i++) {
-                $("#response-table").append("<tr><td>"+data.response[i].rank+"</td><td>"+" EPSG:"+data.response[i].srid+" Name:"+data.response[i].name+"</td></tr>");
+                $("#response-table").append("<tr><td>"+data.response[i].rank+"</td><td>"+" EPSG:"+data.response[i].srid+" Name:"+data.response[i].name+"</td><td>"+" Distance:"+data.response[i].distance.toFixed(6)+"</td></tr>");
             }
             $("#response-div").show();
         });

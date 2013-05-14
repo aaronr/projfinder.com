@@ -73,6 +73,7 @@ function init(){
             for (i = 0; i < data.response.length; i++) {
                 $("#response-table").append("<tr><td>"+data.response[i].rank+"</td><td>"+" EPSG:"+data.response[i].srid+" Name:"+data.response[i].name+"</td></tr>");
             }
+            $("#response-div").show();
         });
     })
 }

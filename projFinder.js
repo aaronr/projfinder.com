@@ -24,14 +24,25 @@ function init(){
     // Coordinate display at bottom of map
     //map.addControl(new OpenLayers.Control.MousePosition());
 
-    map.events.register("moveend", map, function(e) {
+    map.events.register("move", map, function(e) {
         // Always display lat/lon
         OpenLayers.Util.getElement("xcoord").innerHTML = '' + 
             this.getCenter().transform(map.getProjectionObject(),
-				       new OpenLayers.Projection("EPSG:4326")).lon;
+				       new OpenLayers.Projection("EPSG:4326")).lon.toFixed(6);
         OpenLayers.Util.getElement("ycoord").innerHTML = '' + 
             this.getCenter().transform(map.getProjectionObject(),
-				       new OpenLayers.Projection("EPSG:4326")).lat;
+				       new OpenLayers.Projection("EPSG:4326")).lat.toFixed(6);
+    });
+
+    map.events.register("moveend", map, function(e) {
+        // Always display lat/lon
+        //OpenLayers.Util.getElement("xcoord").innerHTML = '' + 
+        //    this.getCenter().transform(map.getProjectionObject(),
+	//			       new OpenLayers.Projection("EPSG:4326")).lon;
+        //OpenLayers.Util.getElement("ycoord").innerHTML = '' + 
+        //    this.getCenter().transform(map.getProjectionObject(),
+	//			       new OpenLayers.Projection("EPSG:4326")).lat;
+
         // Also display transformed
         var lon = this.getCenter().transform(map.getProjectionObject(),
 					     new OpenLayers.Projection("EPSG:4326")).lon;

@@ -34,29 +34,18 @@ function init(){
 				       new OpenLayers.Projection("EPSG:4326")).lat.toFixed(6);
     });
 
-    map.events.register("moveend", map, function(e) {
-        // Always display lat/lon
-        //OpenLayers.Util.getElement("xcoord").innerHTML = '' + 
-        //    this.getCenter().transform(map.getProjectionObject(),
-	//			       new OpenLayers.Projection("EPSG:4326")).lon;
-        //OpenLayers.Util.getElement("ycoord").innerHTML = '' + 
-        //    this.getCenter().transform(map.getProjectionObject(),
-	//			       new OpenLayers.Projection("EPSG:4326")).lat;
-
-        // Also display transformed
-        var lon = this.getCenter().transform(map.getProjectionObject(),
-					     new OpenLayers.Projection("EPSG:4326")).lon;
-        var lat = this.getCenter().transform(map.getProjectionObject(),
-					     new OpenLayers.Projection("EPSG:4326")).lat;
-        var url = "http://api.projfinder.com/api/reproject?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
-	url = url + "&callback=?";
-        $.getJSON(url, function(data) {
-            $('#xycoord').html("x="+data.response[0].coordinates[0]+" y="+data.response[0].coordinates[1]);
-        });
-
-
-
-    });
+//    map.events.register("moveend", map, function(e) {
+//        // Also display transformed
+//        var lon = this.getCenter().transform(map.getProjectionObject(),
+//					     new OpenLayers.Projection("EPSG:4326")).lon;
+//        var lat = this.getCenter().transform(map.getProjectionObject(),
+//					     new OpenLayers.Projection("EPSG:4326")).lat;
+//        var url = "http://api.projfinder.com/api/reproject?x="+lon+"&y="+lat+"&epsg="+$("#xyproj").val();
+//	url = url + "&callback=?";
+//        $.getJSON(url, function(data) {
+//            $('#xycoord').html("x="+data.response[0].coordinates[0]+" y="+data.response[0].coordinates[1]);
+//        });
+//    });
 
     var point = new OpenLayers.LonLat(-122.1066 , 48.033); 
     // Need to convert zoom point to mercator too

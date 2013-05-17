@@ -95,7 +95,7 @@ function init(){
             vector_layer.removeAllFeatures();
             vector_layer.addFeatures(features.reverse());
             $("#response-div").show();
-            $('tr').click(function() {
+            $('tr').hover(function() {
                 // row was clicked
                 for(fid in vector_layer.features) {
                     feature = vector_layer.features[fid];

@@ -75,7 +75,7 @@ function init(){
     // Need to convert zoom point to mercator too
     point.transform(new OpenLayers.Projection("EPSG:4326"), 
 		    map.getProjectionObject());
-    map.setCenter(point, 10); 
+    map.setCenter(point, 14); 
 
     // Hook up to the button to query
     $("#myButton").click(function(){

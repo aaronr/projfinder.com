@@ -2,6 +2,8 @@ var map = null;
 var vector_layer = null;
 var select_feature = null;
 var getCenter = null;
+var crosshair = null;
+var crosshairMarker = null;
 
 function init(){
 
@@ -45,16 +47,6 @@ function init(){
     // Coordinate display at bottom of map
     map.addControl(new OpenLayers.Control.MousePosition());
 
-    map.events.register("move", map, function(e) {
-        // Always display lat/lon
-        OpenLayers.Util.getElement("xcoord").innerHTML = '' + 
-            this.getCenter().transform(map.getProjectionObject(),
-				       new OpenLayers.Projection("EPSG:4326")).lon.toFixed(6);
-        OpenLayers.Util.getElement("ycoord").innerHTML = '' + 
-            this.getCenter().transform(map.getProjectionObject(),
-				       new OpenLayers.Projection("EPSG:4326")).lat.toFixed(6);
-    });
-
     getCenter = function(epsg) {
         // Also display transformed
         var lon = map.getCenter().transform(map.getProjectionObject(),
@@ -76,6 +68,30 @@ function init(){
     point.transform(new OpenLayers.Projection("EPSG:4326"), 
 		    map.getProjectionObject());
     map.setCenter(point, 14); 
+
+    crosshair = new OpenLayers.Layer.Markers( "crosshair" );
+    map.addLayer(crosshair);
+
+    var size = new OpenLayers.Size(20,20);
+    var offset = new OpenLayers.Pixel(-(size.w/2), -(size.h/2));
+    var crosshairIcon = new OpenLayers.Icon('img/crosshair.png',size,offset);
+    crosshairMarker = new OpenLayers.Marker(map.getCenter(),crosshairIcon); 
+    crosshair.addMarker(crosshairMarker);
+
+
+    map.events.register("move", map, function(e) {
+        // Always display lat/lon
+        OpenLayers.Util.getElement("xcoord").innerHTML = '' + 
+            this.getCenter().transform(map.getProjectionObject(),
+				       new OpenLayers.Projection("EPSG:4326")).lon.toFixed(6);
+        OpenLayers.Util.getElement("ycoord").innerHTML = '' + 
+            this.getCenter().transform(map.getProjectionObject(),
+				       new OpenLayers.Projection("EPSG:4326")).lat.toFixed(6);
+
+        crosshairMarker.moveTo(map.getLayerPxFromLonLat(map.getCenter()));
+    });
+
+
 
     // Hook up to the button to query
     $("#myButton").click(function(){

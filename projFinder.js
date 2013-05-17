@@ -77,7 +77,7 @@ function init(){
 
     // Hook up to the button to query
     $("#myButton").click(function(){
-	var url = "http://api.projfinder.com/api/projfinder?ref_lon="+$("#xcoord").html()+"&ref_lat="+$("#ycoord").html()+"&unknown_x="+$("#xtxt").val()+"&unknown_y="+$("#ytxt").val()+"&limit=5";
+	var url = "http://api.projfinder.com/api/projfinder?ref_lon="+$("#xcoord").html()+"&ref_lat="+$("#ycoord").html()+"&unknown_x="+$("#xtxt").val()+"&unknown_y="+$("#ytxt").val()+"&limit=10";
 	url = url + "&callback=?";
         $.getJSON(url, function(data) {
             var geojson_format = new OpenLayers.Format.GeoJSON({

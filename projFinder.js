@@ -69,7 +69,8 @@ function init(){
         });
     };
 
-    var point = new OpenLayers.LonLat(-122.1066 , 48.033); 
+    // x=-93.20981044922574 y=44.95983271358222
+    var point = new OpenLayers.LonLat(-93.209810 , 44.95983); 
     // Need to convert zoom point to mercator too
     point.transform(new OpenLayers.Projection("EPSG:4326"), 
 		    map.getProjectionObject());

@@ -70,7 +70,8 @@ function init(){
     };
 
     // x=-93.20981044922574 y=44.95983271358222
-    var point = new OpenLayers.LonLat(-93.209810 , 44.95983); 
+    // -93.210926 , 44.958509
+    var point = new OpenLayers.LonLat(-93.210926 , 44.958509); 
     // Need to convert zoom point to mercator too
     point.transform(new OpenLayers.Projection("EPSG:4326"), 
 		    map.getProjectionObject());
